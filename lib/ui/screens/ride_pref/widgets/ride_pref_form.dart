@@ -115,6 +115,7 @@ class _RidePrefFormState extends State<RidePrefForm> {
 
       // 3 - Callback withg the new preference
       widget.onSubmit(newPreference);
+      
     }
   }
 
@@ -127,6 +128,25 @@ class _RidePrefFormState extends State<RidePrefForm> {
         arrival = Location.copy(temp);
       }
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant RidePrefForm oldWidget){
+    
+     if (widget.initialPreference != null) {
+      RidePreference current = widget.initialPreference!;
+      departure = current.departure;
+      arrival = current.arrival;
+      departureDate = current.departureDate;
+      requestedSeats = current.requestedSeats;
+    } else {
+      // If no given preferences, we select default ones :
+      departure = null; // User shall select the departure
+      departureDate = DateTime.now(); // Now  by default
+      arrival = null; // User shall select the arrival
+      requestedSeats = 1; // 1 seat book by default
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   // ----------------------------------
