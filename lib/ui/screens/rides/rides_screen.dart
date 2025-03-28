@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:week_3_blabla_project/provider/ride_pref_provider.dart';
 import '../../../model/ride/ride_filter.dart';
 import 'widgets/ride_pref_bar.dart';
-import '../../../service/ride_prefs_service.dart';
+
 
 import '../../../model/ride/ride.dart';
 import '../../../model/ride/ride_pref.dart';
@@ -55,7 +55,7 @@ class RidesScreen extends StatelessWidget {
 
       if (newPreference != null) {
         // 1 - Update the current preference
-        RidePrefService.instance.setCurrentPreference(newPreference);
+        context.read<RidesPreferencesProvider>().setCurrentPreference(newPreference);
 
         // 2 -   Update the state   -- TODO MAKE IT WITH STATE MANAGEMENT
       }

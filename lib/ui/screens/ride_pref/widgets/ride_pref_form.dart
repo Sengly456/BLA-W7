@@ -115,7 +115,6 @@ class _RidePrefFormState extends State<RidePrefForm> {
 
       // 3 - Callback withg the new preference
       widget.onSubmit(newPreference);
-      
     }
   }
 
@@ -131,9 +130,10 @@ class _RidePrefFormState extends State<RidePrefForm> {
   }
 
   @override
-  void didUpdateWidget(covariant RidePrefForm oldWidget){
-    
-     if (widget.initialPreference != null) {
+  void didUpdateWidget(covariant RidePrefForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.initialPreference != null) {
       RidePreference current = widget.initialPreference!;
       departure = current.departure;
       arrival = current.arrival;
@@ -146,7 +146,6 @@ class _RidePrefFormState extends State<RidePrefForm> {
       arrival = null; // User shall select the arrival
       requestedSeats = 1; // 1 seat book by default
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   // ----------------------------------

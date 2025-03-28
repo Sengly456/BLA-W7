@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:week_3_blabla_project/provider/async_value.dart';
 import 'package:week_3_blabla_project/provider/ride_pref_provider.dart';
+import 'package:week_3_blabla_project/ui/widgets/errors/bla_error_screen.dart';
 
 import '../../../model/ride/ride_pref.dart';
 
@@ -33,6 +35,11 @@ class RidePrefScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RidesPreferencesProvider>(
       builder: (context, provider, child) {
+        if(provider.pastPreferences.state == AsyncValueState.loading){
+          return BlaError(message: 'Loading');
+        }else if(provider.pastPreferences.state == AsyncValueState.error){
+          return BlaError(message: 'No connection. Try later message');
+        }
         return Stack(
           children: [
             // Background Image
